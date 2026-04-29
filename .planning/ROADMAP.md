@@ -41,7 +41,7 @@
 3. `qr_mgs(A)` y `qr_householder(A)` implementadas desde cero — qr_householder usa sign(x[0])*‖x‖*e₁ + x para estabilidad
 4. Imagen restaurada con ambos algoritmos es legible; ‖Q̂ᵀQ̂ − I‖₂ calculada y Householder muestra valor mucho menor que MGS
 **Plans:** 2 plans
-- [ ] 02-01-PLAN.md — Surgical edits: Householder sign fix (cells 16, 32), back_substitution manual en cell 18, expansión κ² en cell 11
+- [x] 02-01-PLAN.md — Surgical edits: Householder sign fix (cells 16, 32), back_substitution manual en cell 18, expansión κ² en cell 11
 - [ ] 02-02-PLAN.md — TODO de códigos en cell 0, Restart & Run All headless, human-verify de outputs Parte 1
 
 

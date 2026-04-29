@@ -14,10 +14,10 @@
 ### Parte 1 — Rescate del Patrimonio Documental
 
 - [ ] **P1-01**: Matriz de diseño A construida con todos los monomios bidimensionales x^j y^k con j+k ≤ 9 (d=9); dimensiones exactas impresas; número de condición de AᵀA calculado e interpretado
-- [ ] **P1-02**: Ecuaciones normales intentadas con np.linalg.inv en bloque try-except; imagen resultante mostrada; explicación del fenómeno de cancelación catastrófica
+- [x] **P1-02**: Ecuaciones normales intentadas con np.linalg.inv en bloque try-except; imagen resultante mostrada; explicación del fenómeno de cancelación catastrófica
 - [ ] **P1-03**: Función `qr_mgs(A)` implementada desde cero con comentarios que relacionan el código con el proyector ortogonal de Gram-Schmidt Modificado
-- [ ] **P1-04**: Función `qr_householder(A)` implementada desde cero con comentarios sobre el vector estable de reflexión v = sign(x₁)‖x‖e₁ + x
-- [ ] **P1-05**: Restauración via QR (MGS y Householder) con truco de visualización (+1.0 y np.clip); imágenes restauradas mostradas
+- [x] **P1-04**: Función `qr_householder(A)` implementada desde cero con comentarios sobre el vector estable de reflexión v = sign(x₁)‖x‖e₁ + x
+- [x] **P1-05**: Restauración via QR (MGS y Householder) con truco de visualización (+1.0 y np.clip); imágenes restauradas mostradas
 - [ ] **P1-06**: Norma ‖Q̂ᵀQ̂ − I‖₂ calculada para MGS y Householder; comparación y conclusión sobre por qué Householder es el estándar industrial
 
 ### Parte 2 — Modelación Climática
@@ -55,10 +55,10 @@
 | SETUP-02 | Phase 1 | Pending |
 | SETUP-03 | Phase 1 | Pending |
 | P1-01 | Phase 2 | Pending |
-| P1-02 | Phase 2 | Pending |
+| P1-02 | Phase 2 | Complete (02-01) |
 | P1-03 | Phase 2 | Pending |
-| P1-04 | Phase 2 | Pending |
-| P1-05 | Phase 2 | Pending |
+| P1-04 | Phase 2 | Complete (02-01) |
+| P1-05 | Phase 2 | Complete (02-01) |
 | P1-06 | Phase 2 | Pending |
 | P2-01 | Phase 3 | Pending |
 | P2-02 | Phase 3 | Pending |
