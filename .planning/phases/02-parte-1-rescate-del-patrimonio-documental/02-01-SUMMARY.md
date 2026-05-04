@@ -15,8 +15,8 @@ affects: [02-02-verification]
 tech-stack:
   added: []
   patterns:
-    - "Householder sign fix: (np.sign(x[0]) + (x[0] == 0)) handles x[0]==0 edge case"
-    - "Manual back-substitution loop as replacement for scipy.linalg.solve_triangular in Parte 1"
+    - "Arreglo del signo en Householder: (np.sign(x[0]) + (x[0] == 0)) maneja el caso x[0]==0"
+    - "Bucle manual de back-substitution como reemplazo de scipy.linalg.solve_triangular en Parte 1"
 
 key-files:
   created: []
@@ -24,12 +24,12 @@ key-files:
     - "Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb"
 
 key-decisions:
-  - "Manual back_substitution defined inline in cell 18 (not as a separate cell)"
-  - "Single backslash LaTeX convention maintained for consistency with existing notebook content"
-  - "Comment in cells 16 and 32 updated to mention x_1==0 edge case explicitly"
+  - "back_substitution manual definida inline en celda 18 (no como celda separada)"
+  - "Convención de barra invertida simple en LaTeX mantenida para coherencia con el resto del notebook"
+  - "Comentario en celdas 16 y 32 actualizado para mencionar explícitamente el caso borde x_1==0"
 
 patterns-established:
-  - "LaTeX backslash convention: single backslash in decoded notebook string matches existing cells"
+  - "Convención LaTeX: barra invertida simple en el string decodificado del notebook, coincide con las celdas existentes"
 
 requirements-completed: [P1-02, P1-04, P1-05]
 
@@ -37,78 +37,78 @@ duration: 5min
 completed: 2026-04-29
 ---
 
-# Phase 02 Plan 01: Surgical Corrections to Parte 1 Notebook Summary
+# Plan 02-01: Correcciones Quirúrgicas al Notebook de Parte 1
 
-**Three surgical edits: Householder sign edge-case fix in cells 16 and 32, scipy.solve_triangular replaced with manual back-substitution in cell 18, and kappa(A^T A) = [kappa(A)]^2 digit-loss analysis appended to cell 11**
+**Tres ediciones puntuales: arreglo del signo en Householder (celdas 16 y 32), reemplazo de scipy.solve_triangular con back-substitution manual en celda 18, y expansión del análisis kappa(A^T A) = [kappa(A)]^2 en celda 11**
 
-## Performance
+## Desempeño
 
-- **Duration:** 5 min
-- **Started:** 2026-04-29T14:23:01Z
-- **Completed:** 2026-04-29T14:28:06Z
-- **Tasks:** 3 (all in one commit — all changes to same file)
-- **Files modified:** 1
+- **Duración:** 5 min
+- **Inicio:** 2026-04-29T14:23:01Z
+- **Fin:** 2026-04-29T14:28:06Z
+- **Tareas:** 3 (en un solo commit — todos los cambios en el mismo archivo)
+- **Archivos modificados:** 1
 
-## Accomplishments
-- Fixed Householder reflector sign edge case (`np.sign(0) == 0` would zero out `v[0]`) in both `qr_householder` (cell 16) and `householder_qr` (cell 32)
-- Eliminated `from scipy.linalg import solve_triangular` from Parte 1 (cell 18), replaced with inline `back_substitution` helper that implements the standard upper-triangular back-substitution loop
-- Appended third paragraph to cell 11 Markdown analysis quantifying digit loss: `kappa(A^T A) = [kappa(A)]^2`, ~16 digits available in double precision, 30 digits lost when `kappa(A^T A) ≈ 10^30`
+## Lo que se hizo
+- Corregido el edge case del signo en el reflector Householder (`np.sign(0) == 0` dejaba `v[0]` en cero) en las dos funciones: `qr_householder` (celda 16) y `householder_qr` (celda 32)
+- Eliminado `from scipy.linalg import solve_triangular` de Parte 1 (celda 18), reemplazado con un helper `back_substitution` inline que implementa el bucle estándar de sustitución hacia atrás triangular superior
+- Añadido tercer párrafo a la celda 11 de análisis Markdown cuantificando la pérdida de dígitos: `kappa(A^T A) = [kappa(A)]^2`, ~16 dígitos disponibles en doble precisión, 30 dígitos perdidos cuando `kappa(A^T A) ≈ 10^30`
 
-## Task Commits
+## Commits de las tareas
 
-All three tasks were applied to the same notebook file and committed atomically:
+Las tres tareas se aplicaron al mismo archivo notebook y se commitearon atómicamente:
 
-1. **Task 1: Sign edge case fix (cells 16 & 32)** — `b56a877` (feat)
-2. **Task 2: Replace solve_triangular with back_substitution (cell 18)** — `b56a877` (feat)
-3. **Task 3: Expand Inciso 2 analysis (cell 11)** — `b56a877` (feat)
+1. **Tarea 1: Arreglo del edge case del signo (celdas 16 & 32)** — `b56a877` (feat)
+2. **Tarea 2: Reemplazar solve_triangular con back_substitution (celda 18)** — `b56a877` (feat)
+3. **Tarea 3: Ampliar análisis Inciso 2 (celda 11)** — `b56a877` (feat)
 
-**Plan metadata:** (pending final commit)
+**Metadatos del plan:** (commit final pendiente)
 
-## Files Created/Modified
-- `Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb` — cells 11, 16, 18, 32 modified; all other cells intact
+## Archivos creados/modificados
+- `Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb` — celdas 11, 16, 18, 32 modificadas; todas las demás intactas
 
-## Decisions Made
-- All three tasks committed in one atomic commit since they are all surgical edits to the same notebook file and there was no benefit to splitting them
-- Used inline `back_substitution` helper in cell 18 as specified (not a new cell)
-- Maintained single-backslash LaTeX convention to match existing notebook cells
+## Decisiones tomadas
+- Las tres tareas en un solo commit atómico ya que son ediciones quirúrgicas al mismo archivo y no había beneficio en separarlas
+- Helper `back_substitution` inline en celda 18 según lo especificado (no como celda nueva)
+- Convención de barra invertida simple en LaTeX para coincidir con las celdas existentes del notebook
 
-## Deviations from Plan
+## Desviaciones del plan
 
-### Auto-fixed Issues
+### Problemas auto-corregidos
 
-**1. [Rule 1 - Bug] Python escape sequence corruption in cell 11 append**
-- **Found during:** Task 3 (cell 11 append)
-- **Issue:** Python interpreted `\varepsilon` as `\x0b` (vertical tab) + `arepsilon`, `\approx` as bell + `pprox`, `\top` as tab + `op` in string literals — corrupting the LaTeX content
-- **Fix:** Rebuilt the append text using `chr(92)` for each LaTeX backslash to avoid Python escape sequence interpretation
-- **Files modified:** Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb (cell 11)
-- **Verification:** All acceptance criteria verified via Node.js checks; `\varepsilon`, `\approx`, `\kappa`, `\top` present correctly
-- **Committed in:** b56a877 (task commit)
+**1. [Regla 1 - Bug] Corrupción de secuencias de escape de Python en el append de celda 11**
+- **Detectado en:** Tarea 3 (append de celda 11)
+- **El problema:** Python interpretó `\varepsilon` como `\x0b` (tab vertical) + `arepsilon`, `\approx` como campana + `pprox`, `\top` como tab + `op` en literales de cadena — corrompiendo el contenido LaTeX
+- **Solución:** Se reconstruyó el texto del append usando `chr(92)` para cada barra invertida LaTeX para evitar la interpretación de secuencias de escape de Python
+- **Archivos modificados:** Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb (celda 11)
+- **Verificación:** Todos los criterios de aceptación verificados vía chequeos de Node.js; `\varepsilon`, `\approx`, `\kappa`, `\top` presentes correctamente
+- **Commiteado en:** b56a877
 
-**2. [Rule 1 - Bug] Double-backslash inconsistency in first fix attempt**
-- **Found during:** Task 3 iteration
-- **Issue:** First fix attempt used `chr(92)*2` producing `\\kappa` (double backslash) in decoded string, while existing notebook uses single backslash LaTeX convention
-- **Fix:** Changed to `chr(92)` (single backslash) to match notebook convention
-- **Files modified:** Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb (cell 11)
-- **Verification:** Node check `s.includes(backslash+'kappa(A^'+backslash+'top A) = ['+backslash+'kappa(A)]^2')` passes
-- **Committed in:** b56a877 (task commit)
-
----
-
-**Total deviations:** 2 auto-fixed (2 Rule 1 bugs from Python escape sequence handling)
-**Impact on plan:** Both fixes were necessary for correct LaTeX rendering. No scope creep.
-
-## Issues Encountered
-- Python escape sequences (`\v`, `\a`, `\t`) in string literals silently corrupt LaTeX commands (`\varepsilon`, `\approx`, `\top`). Resolved by using `chr(92)` for backslash construction.
-
-## User Setup Required
-None - no external service configuration required.
-
-## Next Phase Readiness
-- Notebook has all three Parte 1 corrections applied: sign edge case, no scipy in Parte 1, expanded Inciso 2 analysis
-- Ready for plan 02-02: Restart & Run All + visual verification
-- Cells 14, 15, 17, 19, 20, 21 confirmed unmodified
-- nbformat validation passes (39 cells, valid notebook)
+**2. [Regla 1 - Bug] Inconsistencia de doble barra invertida en el primer intento de corrección**
+- **Detectado en:** Iteración de Tarea 3
+- **El problema:** El primer intento usó `chr(92)*2` produciendo `\\kappa` (doble barra) en el string decodificado, mientras que el notebook existente usa la convención de barra simple
+- **Solución:** Cambiado a `chr(92)` (barra simple) para coincidir con la convención del notebook
+- **Archivos modificados:** Practica3-AlgComp-Gallon-Montoya-Gomez.ipynb (celda 11)
+- **Verificación:** Chequeo Node.js `s.includes(backslash+'kappa(A^'+backslash+'top A) = ['+backslash+'kappa(A)]^2')` pasa
+- **Commiteado en:** b56a877
 
 ---
-*Phase: 02-parte-1-rescate-del-patrimonio-documental*
-*Completed: 2026-04-29*
+
+**Total de desviaciones:** 2 auto-corregidas (2 bugs de Regla 1 por manejo de secuencias de escape de Python)
+**Impacto en el plan:** Las dos correcciones eran necesarias para el renderizado correcto del LaTeX. Sin scope creep.
+
+## Problemas encontrados
+- Las secuencias de escape de Python (`\v`, `\a`, `\t`) en literales de cadena corrompen silenciosamente comandos LaTeX (`\varepsilon`, `\approx`, `\top`). Se resolvió usando `chr(92)` para construir las barras invertidas.
+
+## Setup requerido del usuario
+Ninguno — no se requiere configuración de servicio externo.
+
+## Preparación para la siguiente fase
+- El notebook tiene las tres correcciones de Parte 1 aplicadas: arreglo del signo, sin scipy en Parte 1, análisis del Inciso 2 expandido
+- Listo para plan 02-02: Restart & Run All + verificación visual
+- Celdas 14, 15, 17, 19, 20, 21 confirmadas sin modificar
+- Validación nbformat pasa (39 celdas, notebook válido)
+
+---
+*Fase: 02-parte-1-rescate-del-patrimonio-documental*
+*Completado: 2026-04-29*
